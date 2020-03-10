@@ -1,0 +1,37 @@
+{
+  "name": "jest-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxKostyukovich/jest-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxKostyukovich/jest-test/issues"
+  },
+  "homepage": "https://github.com/maxKostyukovich/jest-test#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.10",
+    "@types/jest": "^25.1.3",
+    "chai": "^4.2.0",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1"
+  },
+  "dependencies": {
+    "@types/chromedriver": "^2.38.0",
+    "@types/selenium-webdriver": "^4.0.9",
+    "chromedriver": "^80.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.1",
+    "selenium-webdriver": "^4.0.0-alpha.6",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
