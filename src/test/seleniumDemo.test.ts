@@ -1,16 +1,16 @@
 import * as webdriver from 'selenium-webdriver';
-import {By, error, logging} from 'selenium-webdriver'
-import {getElementById, getElementByClass} from '../utils'
-import { should } from 'chai';
+import {By} from 'selenium-webdriver';
+import {getElementByClass, getElementById} from '../utils'
+import {should} from 'chai';
 import Login from '../classes/PageObjects/Login';
 import ForgotPassword from "../classes/PageObjects/ForgotPassword";
 import Hover from "../classes/PageObjects/Hover";
-import fs from 'fs';
+
 should();
 jest.setTimeout(30000);
-describe('Selenium Demo Test Suite',  () => {
+describe.skip('Selenium Demo Test Suite', () => {
     const sleep = (m: any) => new Promise(r => setTimeout(r, m));
-    let driver:webdriver.WebDriver;
+    let driver: webdriver.WebDriver;
 
     beforeAll(function () {
         driver = new webdriver.Builder()
@@ -20,22 +20,22 @@ describe('Selenium Demo Test Suite',  () => {
     });
 
     test('Test click on abtest href', async () => {
-       const url = 'https://the-internet.herokuapp.com/';
-       await driver.get(url);
-       const aEl = await driver.findElements(By.tagName('a'));
-       let abTestEl = new webdriver.WebElement(driver,  'emptyEl');
-       for (const el of aEl){
-           const text = await el.getText();
-           if(text === 'A/B Testing'){
+        const url = 'https://the-internet.herokuapp.com/';
+        await driver.get(url);
+        const aEl = await driver.findElements(By.tagName('a'));
+        let abTestEl = new webdriver.WebElement(driver, 'emptyEl');
+        for (const el of aEl) {
+            const text = await el.getText();
+            if (text === 'A/B Testing') {
                 abTestEl = el;
                 break;
-           }
-       }
-       await abTestEl.click();
-       const rootEl = await driver.findElement(By.id('content'));
-       const title = await rootEl.findElement(By.tagName('h3'));
-       const text = await title.getText();
-       ['A/B Test Variation 1', 'A/B Test Control'].should.contain(text);
+            }
+        }
+        await abTestEl.click();
+        const rootEl = await driver.findElement(By.id('content'));
+        const title = await rootEl.findElement(By.tagName('h3'));
+        const text = await title.getText();
+        ['A/B Test Variation 1', 'A/B Test Control'].should.contain(text);
     });
 
     test('Test Add/Remove elements', async () => {
@@ -65,11 +65,11 @@ describe('Selenium Demo Test Suite',  () => {
         await driver.get(url);
         const element = await driver.findElement(By.className('example'));
         const images = await element.findElements(By.tagName('img'));
-        const height = await images.map( async (val) => {
+        const height = await images.map(async (val) => {
             return await val.getAttribute('naturalHeight');
         });
         let arr: Array<any> = [];
-        for(let i = 0; i < height.length; i++){
+        for (let i = 0; i < height.length; i++) {
             arr.push(await height[i]);
             arr.pop().should.not.eql("0");
         }
@@ -96,57 +96,45 @@ describe('Selenium Demo Test Suite',  () => {
         await rootEl.click();
         const options = await rootEl.findElements(By.tagName('option'));
         await options[1].click();
-        const isSelected =  await options[1].getAttribute('selected');
+        const isSelected = await options[1].getAttribute('selected');
         isSelected.should.eql("true");
     });
 
-    describe.skip('Testing dynamic controls', () => {
-        const url = 'https://the-internet.herokuapp.com/dynamic_controls';
-        beforeAll(async () => {
-            await driver.get(url);
-        });
-        test('Testing checkbox', async () => {
-            const rootEl = await driver.findElement(By.id('checkbox-example'));
-            const button = await rootEl.findElement(By.tagName('button'));
-            await button.click();
-            const messageEl = await getElementById(driver, 'message', 5000);
-            const messageText = await messageEl.getText();
-            messageText.should.equal('It\'s gone!');
-            await button.click();
-            let checkbox: any;
-            try {
-                checkbox = await getElementById(driver, 'checkbox', 5000);
-            } catch (e) {
-                e.should.not.exist;
-            }
-            const checkboxStatus = await checkbox.isDisplayed();
-            checkboxStatus.should.be.true;
-        });
-        test('Testing input', async () => {
-            const rootEl = await driver.findElement(By.id('input-example'));
-            const button = await rootEl.findElement(By.tagName('button'));
-            const input = await rootEl.findElement(By.tagName('input'));
-            const inputStatus = await input.getAttribute('disabled');
-            inputStatus.should.be.equal("true");
-            await button.click();
-            await sleep(5000);
-            const changedInputStatus = await input.getAttribute('disabled');
-            if(changedInputStatus !== null){
-                throw new Error('Status wasn\'t changed')
-            }
-        })
-    });
-    // test.only('Testing on mouse out popup', async () => {
-    //     const url = 'https://the-internet.herokuapp.com/exit_intent';
-    //     await driver.get(url);
-    //     const rootEl = await driver.findElement(By.tagName('html'));
-    //     const el = await  document.getElementById('content');
-    //     const  a = await driver.executeScript(function(){
-    //         const evObj = document.createEvent('MouseEvent');
-    //         evObj.initEvent('mouseover', true, false);
-    //         const html = document.getElementsByTagName('html');
+    // describe.skip('Testing dynamic controls', () => {
+    //     const url = 'https://the-internet.herokuapp.com/dynamic_controls';
+    //     beforeAll(async () => {
+    //         await driver.get(url);
     //     });
-    //     console.log(a);
+    //     test.skip('Testing checkbox', async () => {
+    //         const rootEl = await driver.findElement(By.id('checkbox-example'));
+    //         const button = await rootEl.findElement(By.tagName('button'));
+    //         await button.click();
+    //         const messageEl = await getElementById(driver, 'message', 5000);
+    //         const messageText = await messageEl.getText();
+    //         messageText.should.equal('It\'s gone!');
+    //         await button.click();
+    //         let checkbox: any;
+    //         try {
+    //             checkbox = await getElementById(driver, 'checkbox', 5000);
+    //         } catch (e) {
+    //             e.should.not.exist;
+    //         }
+    //         const checkboxStatus = await checkbox.isDisplayed();
+    //         checkboxStatus.should.be.true;
+    //     });
+    //     test.skip('Testing input', async () => {
+    //         const rootEl = await driver.findElement(By.id('input-example'));
+    //         const button = await rootEl.findElement(By.tagName('button'));
+    //         const input = await rootEl.findElement(By.tagName('input'));
+    //         const inputStatus = await input.getAttribute('disabled');
+    //         inputStatus.should.be.equal("true");
+    //         await button.click();
+    //         await sleep(5000);
+    //         const changedInputStatus = await input.getAttribute('disabled');
+    //         if (changedInputStatus !== null) {
+    //             throw new Error('Status wasn\'t changed')
+    //         }
+    //     })
     // });
 
     describe.skip('Testing Login page', () => {
@@ -156,7 +144,7 @@ describe('Selenium Demo Test Suite',  () => {
             await loginPage.password?.sendKeys(password);
             await loginPage.submit?.click();
             const flash = await loginPage.getFlashEl();
-            return  await flash.getText();
+            return await flash.getText();
         };
 
         beforeAll(() => {
@@ -193,8 +181,7 @@ describe('Selenium Demo Test Suite',  () => {
     test('Testing hover elements', async () => {
         const hoverPage = new Hover(driver);
         await hoverPage.open();
-        if(!hoverPage.hoverEL)
-        {
+        if (!hoverPage.hoverEL) {
             return
         }
         await driver.actions().move({origin: hoverPage.hoverEL, duration: 1000}).perform();
@@ -210,8 +197,6 @@ describe('Selenium Demo Test Suite',  () => {
         const resultEl = await getElementById(driver, 'uploaded-files', 4000);
         (await resultEl.getText()).should.equal('0.png');
     });
-
-
 
 
     afterAll(function () {

@@ -1,0 +1,18 @@
+1. As user I can log in so that I can enter to my dashboard
+
+Given registered email and password
+    and web site's login page is available
+When request log in with users's credentials
+Then website give access to user's dashboard
+
+2.As user I can register new account so I can have a dashboard
+
+Given first name, last name, display name, email, password and user type(buyer or creative)
+    and email is unique
+    and password equals conformation password
+    and display name is free
+When web site register your credentials
+Then you have access to your personal dashboard
+
+3. As a buyer I can create contest
+
