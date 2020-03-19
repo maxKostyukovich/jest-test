@@ -1,6 +1,7 @@
 import * as webdriver from 'selenium-webdriver';
 import {By, until} from 'selenium-webdriver';
-import {getElementByClass, getElementById} from '../../utils'
+import {getElementByClass, getElementById} from '../../../utils/index'
+import {credentials as credential} from "./constants";
 import {should} from 'chai';
 import Login from "./pageObjects/Login";
 
@@ -20,10 +21,6 @@ describe.skip('Login test suite', () => {
     });
     describe('Positive cases', ()=> {
         test('Success login', async () => {
-            const credential = {
-                email: 'max.aq2@gmail.com',
-                password: 'qwerty123'
-            };
             const loginPage = new Login(driver);
             await loginPage.open();
             await loginPage.sendKeys(credential.email, credential.password);

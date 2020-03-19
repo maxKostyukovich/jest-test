@@ -1,10 +1,10 @@
 import * as webdriver from 'selenium-webdriver';
 import {By} from 'selenium-webdriver';
-import {getElementByClass, getElementById} from '../utils'
+import {getElementByClass, getElementById} from '../../utils/index'
 import {should} from 'chai';
-import Login from '../classes/PageObjects/Login';
-import ForgotPassword from "../classes/PageObjects/ForgotPassword";
-import Hover from "../classes/PageObjects/Hover";
+import Login from '../../classes/PageObjects/Login';
+import ForgotPassword from "../../classes/PageObjects/ForgotPassword";
+import Hover from "../../classes/PageObjects/Hover";
 
 should();
 jest.setTimeout(30000);
