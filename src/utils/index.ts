@@ -11,3 +11,8 @@ export const getElementByClass = async (driver: webdriver.WebDriver, className: 
     const el = await driver.wait(until.elementLocated(By.className(className)), timeout);
     return await driver.wait(until.elementIsVisible(el), timeout);
 };
+
+export const getElementByXPath = async (driver: webdriver.WebDriver, xpath: string, timeout = 2000) => {
+    const el = await driver.wait(until.elementLocated(By.xpath(xpath)), timeout);
+    return await driver.wait(until.elementIsVisible(el), timeout);
+};

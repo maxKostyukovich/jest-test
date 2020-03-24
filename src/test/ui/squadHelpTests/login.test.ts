@@ -8,7 +8,7 @@ import Login from "./pageObjects/Login";
 should();
 jest.setTimeout(30000);
 
-describe.skip('Login test suite', () => {
+describe('Login test suite', () => {
     let driver: webdriver.WebDriver;
     beforeAll(function () {
         driver = new webdriver.Builder()

@@ -9,7 +9,7 @@ import {toMatchImageSnapshot} from 'jest-image-snapshot'
 should();
 jest.setTimeout(30000);
 expect.extend({ toMatchImageSnapshot });
-describe.skip('Main page test suite', () => {
+describe('Main page test suite', () => {
     let driver: webdriver.WebDriver;
     const sleep = (m: any) => new Promise(r => setTimeout(r, m));
     beforeAll(function () {

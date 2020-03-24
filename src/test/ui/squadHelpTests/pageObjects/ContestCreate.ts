@@ -1,7 +1,8 @@
 import Page from './Page'
 import {WebElement, WebDriver, By} from "selenium-webdriver";
 import {contestTestData} from "../constants";
-import {getElementByClass}  from "../../../../utils"
+import {getElementByClass, getElementByXPath} from "../../../../utils"
+import {threadId} from "worker_threads";
 
 class ContestCreate extends Page{
     public logoTypeElement?: WebElement;
@@ -40,7 +41,7 @@ class ContestCreate extends Page{
     }
 
     async contestPricingElementsInit() {
-        this.bronzePricing = await this.driver.findElement(By.xpath(`//*[@id="desktop-pricing-plans"]/div/div/div/div[2]/div/ul/li[4]`));
+        this.bronzePricing = await getElementByXPath(this.driver, `//*[@id="desktop-pricing-plans"]/div/div/div/div[2]/div/ul/li[4]/a`, 4000);
         this.pricingNextButton = await this.driver.findElement(By.xpath(`//*[@id="content"]/div[2]/div/div[4]/div/div[1]/div[3]/a`));
     }
 

@@ -1,9 +1,9 @@
 import * as webdriver from 'selenium-webdriver'
 import { should } from 'chai'
-import {getElementByClass, getElementById} from "../../../utils/index";
-import Login from './pageObjects/Login';
-import {credentials, contestTestData, errorAlertMessages} from "./constants/index";
-import ContestCreate from './pageObjects/ContestCreate';
+import {getElementByClass} from "../../../../utils/index";
+import Login from '../pageObjects/Login';
+import {credentials, contestTestData, errorAlertMessages} from "../constants/index";
+import ContestCreate from '../pageObjects/ContestCreate';
 import {By, WebElement} from "selenium-webdriver";
 should();
 jest.setTimeout(30000);
@@ -51,7 +51,7 @@ describe('Contest create test suit', () => {
        textAmount.should.equal(attributeAmount);
    });
 
-    test.only('Invalid data in contest create form', async () => {
+    test('Invalid data in contest create form', async () => {
         const initiateClickToNextPage = async (page: ContestCreate, errorMsg: string) => {
             await page.nextButton?.click();
             await driver.wait(webdriver.until.alertIsPresent());

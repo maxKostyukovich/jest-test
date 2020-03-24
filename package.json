@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test-main-page": "jest main",
+    "test-auth": "jest login",
+    "test-create-contest": "jest contestCreate",
+    "test-name-for-sale": "jest viewNameForSale",
+    "test-end-to-end": "jest src/test/ui/squadHelpTests/endToEnd/"
   },
   "repository": {
     "type": "git",

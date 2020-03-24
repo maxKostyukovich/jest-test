@@ -2,7 +2,7 @@ import Page from "./Page";
 import {WebElement, WebDriver, By} from "selenium-webdriver";
 
 class Main extends Page{
-    //public firstCarousel?: WebElement;
+    public viewNamesButton?: WebElement;
     public menuItems?: WebElement[];
     constructor(driver: WebDriver) {
         super(driver);
@@ -11,8 +11,8 @@ class Main extends Page{
 
     async open(){
         await this.driver.get(this.url);
-        //this.firstCarousel = await this.driver.findElement(By.className('name-example-slider'))
         this.menuItems = await this.driver.findElements(By.xpath(`//*[@id="navBar"]/ul/li[@class='nav-item hs-has-sub-menu u-header__nav-item']`));
+        this.viewNamesButton = await this.driver.findElement(By.xpath(`//div[@class="col-md-4 d-md-inline text-center"]/a[@href='/premium-domains-for-sale/all']`));
     }
 }
 export default Main;
