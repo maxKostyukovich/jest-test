@@ -17,5 +17,22 @@ class GenerateInfo {
         }
     }
 
+    static generateInitialList() {
+        return {
+            name: rand.hacker.phrase(),
+            instruction: rand.lorem.words(5),
+            sendTo: [rand.internet.email()],
+            urls: [rand.internet.url(), rand.internet.url(), rand.internet.url(), rand.internet.url()]
+        }
+    }
+
+
+    static generateRandomString(length: number) {
+        let text = "";
+        const possible = "abcdefghijklmnopqrstuvwxyz";
+        for( let i=0; i < length; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    }
 }
 export default GenerateInfo

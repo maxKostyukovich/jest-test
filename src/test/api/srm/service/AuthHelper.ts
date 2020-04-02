@@ -2,7 +2,7 @@ import chai from 'chai'
 import chaiHttp from 'chai-http'
 import * as rand from 'faker'
 import {SERVER_URL, DEFAULT_PASSWORD} from "../constants";
-
+import GenerateInfo from '../utils/generateInfo'
 chai.use(chaiHttp);
 
 class AuthHelper {
@@ -19,12 +19,14 @@ class AuthHelper {
     }
 
     static async signup(email?: string){
-        if(!email){
-            email = rand.internet.email();
+        if(email === undefined){
+            //email = GenerateInfo.generateRandomString(5) + rand.internet.email();
+            email = GenerateInfo.generateRandomString(10) + '@gmail.com';
         }
         const res = await chai.request(SERVER_URL)
             .post('/api/signup')
             .send({email, password: DEFAULT_PASSWORD});
+        console.log(res.text);
         return {
             email: res.body?.userData?.email,
             token: res.body?.token,

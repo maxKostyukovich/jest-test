@@ -13,7 +13,8 @@
     "test-api-signup": "jest signup",
     "test-api-login": "jest src/test/api/srm/black-box/auth/login",
     "test-api-auth": "jest src/test/api/srm/black-box/auth/",
-    "test-api-user": "jest user"
+    "test-api-user": "jest user",
+    "test-api-initial-list": "jest initialList"
   },
   "repository": {
     "type": "git",
