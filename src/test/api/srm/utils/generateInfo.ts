@@ -26,6 +26,25 @@ class GenerateInfo {
         }
     }
 
+    static generateDataForUpdateInitialList(id: number, receiverFirstEmail: string) {
+        return {
+            listId: id,
+            prospect: [
+                {
+                    prospectUrl: rand.internet.url()
+                }
+            ],
+            receiver: [
+                {
+                    email: receiverFirstEmail
+                },
+                {
+                    email: this.generateRandomString(3) + rand.internet.email()
+                }
+            ],
+        }
+    }
+
 
     static generateRandomString(length: number) {
         let text = "";

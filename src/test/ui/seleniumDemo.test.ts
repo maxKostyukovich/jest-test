@@ -8,7 +8,7 @@ import Hover from "../../classes/PageObjects/Hover";
 
 should();
 jest.setTimeout(30000);
-describe.skip('Selenium Demo Test Suite', () => {
+describe('Selenium Demo Test Suite', () => {
     const sleep = (m: any) => new Promise(r => setTimeout(r, m));
     let driver: webdriver.WebDriver;
 
@@ -137,7 +137,7 @@ describe.skip('Selenium Demo Test Suite', () => {
     //     })
     // });
 
-    describe.skip('Testing Login page', () => {
+    describe('Testing Login page', () => {
         let loginPage: Login;
         const sendKeysFunc = async (username: string, password: string) => {
             await loginPage.username?.sendKeys(username);

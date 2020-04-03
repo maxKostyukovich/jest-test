@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test-ui-main-page": "jest main",
-    "test-ui-auth": "jest login",
+    "test-ui-auth": "jest src/test/ui/squadHelpTests/login",
     "test-ui-create-contest": "jest contestCreate",
     "test-ui-name-for-sale": "jest viewNameForSale",
     "test-ui-end-to-end": "jest src/test/ui/squadHelpTests/endToEnd/",

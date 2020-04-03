@@ -42,5 +42,18 @@ class ListHelper {
             id: res.body.id,
         }
     }
+
+    static async updateInitialList(token: string, newData: any){
+        const res = await chai.request(SERVER_URL)
+            .put('/api/initial')
+            .set('token', token)
+            .send(newData);
+        return {
+            status: res.status,
+            text: res.text,
+            id: res.body.id,
+            SendTos: res.body.SendTos
+        }
+    }
 }
 export default ListHelper

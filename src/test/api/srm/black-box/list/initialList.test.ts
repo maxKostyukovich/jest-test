@@ -70,6 +70,39 @@ describe('Initial list test suite', () => {
                 res.text.should.equal(`"List isn\`t found"`);
             })
         })
+
+    });
+
+    describe('Update initial list test', () => {
+        describe('Positive case', () => {
+            test('Successful updating initial list', async () => {
+                const user = await AuthHelper.signup();
+                await AuthHelper.signUpSecondStep(user.token, GenerateInfo.generateSecondStepSignUpInfo());
+                await UserHelper.someMagic(user.token);
+                await ListHelper.createInitialList(user.token);
+                const {list} = await ListHelper.getInitialList(user.token);
+                const id = list[0].id;
+                const newData = GenerateInfo.generateDataForUpdateInitialList(id, 'andreygrt2@gmail.com');
+                const res = await ListHelper.updateInitialList(user.token,newData);
+                res.status.should.equal(200);
+                res.id.should.equal(id);
+                res.SendTos.should.to.be.an('array');
+                res.SendTos[0]?.email.should.equal('andreygrt2@gmail.com');
+                res.SendTos[0]?.listId.should.equal(id);
+
+            })
+        });
+        describe('Negative case', () => {
+            test('Updating initial list with invalid id', async () => {
+                const user = await AuthHelper.signup();
+                await AuthHelper.signUpSecondStep(user.token, GenerateInfo.generateSecondStepSignUpInfo());
+                await UserHelper.someMagic(user.token);
+                const newData = GenerateInfo.generateDataForUpdateInitialList(-1, 'andreygrt2@gmail.com');
+                const res = await ListHelper.updateInitialList(user.token,newData);
+                res.status.should.equal(200);
+                res.text.should.equal(`"List is not found"`);
+            })
+        })
     })
 
 

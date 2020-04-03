@@ -19,7 +19,7 @@ class BrandNamesForSale extends Page{
     }
 
     async initPageObjects(){
-        this.searchInput = await getElementByClass(this.driver, 'ais-SearchBox-input', 4000);
+        this.searchInput = await getElementByClass(this.driver, 'ais-SearchBox-input', 6000);
         this.filterOptions = await this.driver.findElements(By.className('ais-RefinementList-item'));
         //this.filterOptions = await this.driver.wait(until.elementLocated(By.className('ais-RefinementList-item')), 5000);
         await this.driver.wait(until.elementLocated(By.xpath(`//*[@id="hits"]/li`)), 5000);
